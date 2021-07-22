@@ -1,4 +1,12 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
+
+# Sample mount script, umask is needed for samba server otherwise can not read/write in samba. 
+# Comment out the following line with correct device path and mount path
+# mount -t exfat -o rw,umask=000 /dev/sda1 /mnt/sda1
+
+# or use
+# /bin/mount_exfat.sh DEVICE_PATH MOUNT_POINT
+
 exit 0
