@@ -25,11 +25,13 @@ ramips_setup_interfaces()
 	ampedwireless,ally-r1900k|\
 	gehua,ghl-r-001|\
 	hiwifi,hc5962|\
-	zte,e8820s|\
 	xiaomi,mi-router-3-pro|\
 	xiaomi,mi-router-ac2100|\
 	xiaomi,redmi-router-ac2100)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" "wan"
+		;;
+	zte,e8820s)
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "wan"
 		;;
 	asiarf,ap7621-001|\
 	winstars,ws-wn583a6)
