@@ -666,6 +666,23 @@ define Device/humax_e10
 endef
 TARGET_DEVICES += humax_e10
 
+define Device/zte_8820s
+  $(Device/dsa-migration)
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  UBINIZE_OPTS := -E 5
+  IMAGE_SIZE := 32768k
+  IMAGES += factory.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | \
+	check-size
+  DEVICE_VENDOR := ZTE
+  DEVICE_MODEL := 8820S
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3
+endef
+TARGET_DEVICES += zte_8820s
+
 define Device/iodata_wn-ax1167gr
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
