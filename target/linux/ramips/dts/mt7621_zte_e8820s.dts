@@ -23,7 +23,7 @@
 
 		led_status: status {
 			label = "white:status";
-			gpios = <&gpio 6 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 3 GPIO_ACTIVE_LOW>;
 		};
 
 		led_system: system {
