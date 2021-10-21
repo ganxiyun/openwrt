@@ -4,8 +4,8 @@
 #include <dt-bindings/input/input.h>
 
 / {
-	compatible = "zte,8820s", "mediatek,mt7621-soc";
-	model = "ZTE 8820S";
+	compatible = "zte,e8820s", "hiwifi,hc5962", "mediatek,mt7621-soc";
+	model = "ZTE E8820S";
 
 	aliases {
 		led-boot = &led_system;
@@ -23,7 +23,7 @@
 
 		led_status: status {
 			label = "white:status";
-			gpios = <&gpio 3 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 6 GPIO_ACTIVE_LOW>;
 		};
 
 		led_system: system {
@@ -147,11 +147,6 @@
 		};
 
 		port@4 {
-			status = "okay";
-			label = "lan4";
-		};
-
-		port@5 {
 			status = "okay";
 			label = "wan";
 		};

@@ -627,7 +627,7 @@ define Device/hiwifi_hc5962
 endef
 TARGET_DEVICES += hiwifi_hc5962
 
-define Device/zte_8820s
+define Device/zte_e8820s
   $(Device/dsa-migration)
   BLOCKSIZE := 128k
   PAGESIZE := 2048
@@ -639,10 +639,10 @@ define Device/zte_8820s
   IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | \
 	check-size
   DEVICE_VENDOR := ZTE
-  DEVICE_MODEL := 8820S
+  DEVICE_MODEL := E8820S
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3
 endef
-TARGET_DEVICES += zte_8820s
+TARGET_DEVICES += zte_e8820s
 
 define Device/iodata_wn-ax1167gr
   $(Device/dsa-migration)
