@@ -8,10 +8,10 @@
 	model = "ZTE E8820S";
 
 	aliases {
-		led-boot = &led_system;
-		led-failsafe = &led_system;
-		led-running = &led_status;
-		led-upgrade = &led_status;
+		led-boot = &led_power;
+		led-failsafe = &led_power;
+		led-running = &led_power;
+		led-upgrade = &led_power;
 	};
 
 	chosen {
@@ -21,16 +21,16 @@
 	leds {
 		compatible = "gpio-leds";
 
-		led_status: status {
-			label = "white:status";
-			gpios = <&gpio 3 GPIO_ACTIVE_LOW>;
+		led_power: power {
+			label = "white:power";
+			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
 		};
 
-		led_system: system {
-			label = "red:system";
-			gpios = <&gpio 7 GPIO_ACTIVE_LOW>;
-			panic-indicator;
+		wifi5g {
+			label = "white:wifi5g";
+			gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
 		};
+
 	};
 
 	keys {
@@ -41,6 +41,19 @@
 			gpios = <&gpio 18 GPIO_ACTIVE_HIGH>;
 			linux,code = <KEY_RESTART>;
 		};
+
+                wps {
+                        label = "wps";
+                        gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+                        linux,code = <KEY_WPS_BUTTON>;
+                };
+
+                wifi {
+                        label = "wifi";
+                        gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
+                        linux,code = <KEY_RFKILL>;
+                };
+
 	};
 
 	ubi-concat {
@@ -118,6 +131,10 @@
 		reg = <0x0000 0 0 0 0>;
 		mediatek,mtd-eeprom = <&factory 0x0000>;
 		ieee80211-freq-limit = <2400000 2500000>;
+
+		led {
+			led-active-low;
+		};
 	};
 };
 
@@ -126,12 +143,17 @@
 		reg = <0x0000 0 0 0 0>;
 		mediatek,mtd-eeprom = <&factory 0x8000>;
 		ieee80211-freq-limit = <5000000 6000000>;
+
+		led {
+			led-sources = <2>;
+			led-active-low;
+		};
 	};
 
-	led  {
-		led-sources = <2>;
-		led-active-low;
-	};
+};
+
+&gmac0 {
+	mtd-mac-address = <&factory 0xe000>;
 };
 
 &switch0 {
@@ -159,6 +181,7 @@
 		port@4 {
 			status = "okay";
 			label = "wan";
+			mtd-mac-address = <&factory 0xe006>;
 		};
 
 
