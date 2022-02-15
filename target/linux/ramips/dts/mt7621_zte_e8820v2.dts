@@ -10,10 +10,10 @@
     model = "ZTE E8820V2";
    
     aliases {
-        led-boot = &led_sys;
-        led-failsafe = &led_sys;
-        led-running = &led_sys;
-        led-upgrade = &led_sys;
+        led-boot = &led_power;
+        led-failsafe = &led_power;
+        led-running = &led_power;
+        led-upgrade = &led_power;
     };
 
     chosen {
@@ -23,15 +23,10 @@
     leds {
         compatible = "gpio-leds";
 
-        led_sys:sys {
-            label = "e8820v2:white:sys";
+        led_power:power {
+            label = "white:power";
             gpios = <&gpio 29 GPIO_ACTIVE_LOW>;
         };   
-
-        led_power:power {
-            label = "e8820v2:white:power";
-            gpios = <&gpio 31 GPIO_ACTIVE_LOW>;            
-        };
     };
 
     keys {
@@ -97,7 +92,7 @@
 };
 
 &pcie0 {
-    mt76@1,0 {
+    mt76@0,0 {
         reg = <0x0000 0 0 0 0>;
         mediatek,mtd-eeprom = <&factory 0x0000>;
         ieee80211-freq-limit = <2400000 2500000>;
