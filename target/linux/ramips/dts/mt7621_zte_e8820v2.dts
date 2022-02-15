@@ -38,10 +38,10 @@
             linux,code = <KEY_RESTART>;
         };
 
-        wps {
-            label = "wps";
+        wifi {
+            label = "wifi";
             gpios = <&gpio 24 GPIO_ACTIVE_LOW>;
-            linux,code = <KEY_WPS_BUTTON>;
+            linux,code = <KEY_RFKILL>;
         };
     };
 };
