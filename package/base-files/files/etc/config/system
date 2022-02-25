@@ -1,0 +1,9 @@
+config system
+        option zonename 'Asia/Shanghai'
+        option timezone 'CST-8'
+
+config timeserver 'ntp'
+        list server 'cn.ntp.org.cn'
+        list server 'ntp.aliyun.com'
+        list server 'ntp.tuna.tsinghua.edu.cn'
+
