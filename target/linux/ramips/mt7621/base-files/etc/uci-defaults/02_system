@@ -1,0 +1,18 @@
+#!/bin/sh
+
+. /lib/functions.sh
+. /lib/functions/uci-defaults.sh
+. /lib/functions/system.sh
+
+uci set system.@system[0].timezone='CST-8'
+uci set system.@system[0].zonename='Asia/Shanghai'
+
+
+uci -q delete system.ntp.server
+uci add_list system.ntp.server="cn.ntp.org.cn"
+uci add_list system.ntp.server="ntp.aliyun.com"
+uci add_list system.ntp.server="ntp.tuna.tsinghua.edu.cn"
+
+uci commit system
+
+/etc/init.d/sysntpd restart
